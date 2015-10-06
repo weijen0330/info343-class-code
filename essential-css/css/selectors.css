@@ -13,4 +13,63 @@
     - hover and focus pseudo-selectors (for styling hyperlinks)
     - margins and padding
     - borders
+
 */
+ body {
+    font-family: Lato, Helvetica, sans-serif;  
+    font-size: 18px;
+
+ }
+
+ h1, h2 {
+    font-weight: 300;
+    
+ }  
+
+ .subtitle { 
+    font-size: 200%;
+    font-weight: 300;
+}  
+
+.term { 
+    font-style: italic;
+}
+
+a { 
+    text-decoration: none;
+}
+
+a:hover, a:focus { 
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #333;
+    color: #FFF; 
+    padding-top: 3em;
+    padding-bottom: 3em;
+    padding-left: 3em;
+    padding-right: 3em;
+    border-top-width: 5px;
+    border-top-color: #F00;
+    border-top-style: solid;
+}
+
+footer a { 
+    color: #DDF
+}
+
+footer a:hover { 
+    color: #FFF;
+}
+
+header {
+    background-color: #CCC;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+header h1 { /* remove the ugly white space on the top */
+    margin-top: 0;
+}
+
