@@ -1,9 +1,6 @@
 header {
-    background-image: url(../img/pencil-background.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    min-height: 600px;
     padding: 1.5em;
+    background-color: #8C8170
 }
 
 header h1 {
@@ -14,4 +11,29 @@ header h1 {
 header p {
     font-size: 200%;
     font-weight: 300;
+}
+
+/* for when the users view this on the smartphone. */
+@media(min-width: 768px) { 
+    header {
+    background-image: linear-gradient(rgba(255, 255, 255, 1), rgba(255,255,255,0)), url(../img/pencil-background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 600px;
+    }
+}
+
+.bunny img {
+    float: left;
+    max-height: 200px;
+}
+
+.bunny aside { 
+    font-size: 200%;
+    font-weight: 100;
+    margin-left: 1em;
+}
+
+footer {
+    clear: both;
 }
