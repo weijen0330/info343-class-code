@@ -14,8 +14,9 @@ $(function() {
     // new query that will return all tasks ordered by createAt
     var tasksQuery = new Parse.Query(Task);
 
-    // Data and time this was created
+    // Data and time this was created. Sorting based on that
     tasksQuery.ascending('createdAt');
+    tasksQuery.notEqualTo('done', true);
 
     // reference to the task list element
     var tasksList = $('#tasks-list');
@@ -26,7 +27,10 @@ $(function() {
     //current set of tasks
     var tasks = [];
 
-    // .text shows plain texts --> stops script encryption attacks with innerHTML
+    // reference to our rating element
+    var ratingElem = $('#rating');
+
+    // .text shows plain texts --> stops script encryption attacks with .html or innerHTML
     function displayError(err) {
         errorMessage.text(err.message);
         errorMessage.fadeIn();
@@ -61,9 +65,22 @@ $(function() {
     function renderTasks() {
         tasksList.empty();
         tasks.forEach(function(task) {
-            $(document.createElement('li'))
+            var li = $(document.createElement('li'))
                 .text(task.get("title"))
-                .appendTo(tasksList);
+                // similar to if ? what should happen :(else) what should happen
+                .addClass(task.get('done') ? 'completed-task' : '')
+                .appendTo(tasksList)
+                .click(function() {
+                    task.set('done', !task.get('done'));
+                    task.save().then(renderTasks, displayError);
+            });
+            // span and div mean nothing. span is inline and div is block
+            $(document.createElement('span'))
+                // **********          this means that if the first part is undefined, js will think of it as "false"
+                // **********
+                // and use what comes after the || (or) as the default
+                .raty({readOnly: true, score: (task.get('rating') || 0), hints : ['crap', 'awful', 'ok', 'nice', 'awesome']})
+                .appendTo(li);
         });
     }
 
@@ -76,15 +93,17 @@ $(function() {
         var title = titleInput.val();
         var task = new Task();
         task.set('title', title);
+        task.set('rating', ratingElem.raty('score'));
         task.save().then(fetchTasks, displayError).then(function() {
             // clears out title once the task is saved
             titleInput.val('');
-
+            ratingElem.raty('set', {});
         });
         return false;
     });
 
     fetchTasks();
+    ratingElem.raty();
 
     // window: global object like document and navigator. Sets a timer
     window.setInterval(fetchTasks, 3000);
