@@ -77,8 +77,7 @@ $(function() {
             // span and div mean nothing. span is inline and div is block
             $(document.createElement('span'))
                 // **********          this means that if the first part is undefined, js will think of it as "false"
-                // **********
-                // and use what comes after the || (or) as the default
+                // **********          and use what comes after the || (or) as the default
                 .raty({readOnly: true, score: (task.get('rating') || 0), hints : ['crap', 'awful', 'ok', 'nice', 'awesome']})
                 .appendTo(li);
         });
