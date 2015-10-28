@@ -16,7 +16,32 @@
         <script src="js/movies.js"></script>
 
     </head>
-    <body>
+    <body class="container" ng-app="Movies" ng-controller="MoviesController">
+        <h1>Movies from 2014</h1>
+        <p>
+            <input type="search" class="form-control"
+                   placeholder="type to filter" ng-model="query" />
+        </p>
 
+        <table class="table" >
+            <thead>
+                <tr></tr>
+                    <th>Title</th>
+                    <th>Rating</th>
+                    <th>Released</th>
+                    <th>Gross Sales</th>
+            </thead>
+            <tbody>
+            <!-- {title: query} strictly filtering on the title -->
+            <tr ng-repeat= "movie in movies | filter : query">
+                <td>{{movie.title}}</td>
+                <td>{{movie.rating}}</td>
+                <td>{{movie.released | date : 'MMM dd'}}</td>
+                <!-- filter: transforming data -->
+                <td>{{movie.gross | currency}}</td>
+            </tr>
+
+            </tbody>
+        </table>
     </body>
 </html>

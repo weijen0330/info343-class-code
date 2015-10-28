@@ -9,7 +9,7 @@
 
 //declare a new Angular module with the name `AngularIntro`
 //this will be the name we use with the `ng-app` attribute
-//the second parameter means this module doesn't depend on any other modules
+//the second parameter means this module doesn't depend on any other modules. We don't need anything else
 angular.module('AngularIntro', [])
     //angular.module returns the new Angular module object, 
     //which has other methods like `controller`, 
@@ -33,5 +33,5 @@ angular.module('AngularIntro', [])
         //try changing this value to something else, and refresh
         //the page to see how the default value of the model is
         //automatically shown in the view on page load
-        $scope.name = null;
+        $scope.name = "Wei-Jen";
     });
