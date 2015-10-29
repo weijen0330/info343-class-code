@@ -8,6 +8,7 @@ angular.module('Tasks', [])
     // all controllers can use this variable
     .constant('tasksKey', 'tasks')
     .controller('TasksController', function($scope, tasksKey) {
+        console.log("controllerloaded");
         // initialize tasks property on the scope to an empty array
         $scope.tasks = angular.fromJson(localStorage.getItem(tasksKey)) || [];
         // initialize newTask to an empty object
@@ -15,7 +16,7 @@ angular.module('Tasks', [])
 
         function saveTasks() {
             // toJSON --> convert  data to JSON
-            localStorage.setItem(tasksKey, angular.toJSON($scope.tasks));
+            localStorage.setItem(tasksKey, angular.toJson($scope.tasks));
         }
         // in javascript, object is a map. Key is the variable name and function is the value.
         // Function in js is an object type. Add a function to add newTask to the array
