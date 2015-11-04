@@ -1,6 +1,8 @@
 <h1>Edit {{contact.fname}} {{contact.lname}}</h1>
 
-<!-- tell browser to not validate, let angular do it -->
+<!-- tell browser to not validate, let angular do it
+ Don't use type of date because the users then HAS to enter in that way
+ but type of tel is good for mobile users. A number pad will pop up-->
 <form name="contactForm" novalidate ng-submit="save()">
     <div class="form-group">
         <label for="fnameImP">First Name:</label>
