@@ -38,29 +38,28 @@
         <main class="container" ng-app="ChatApp" ng-controller="ChatController">
             <h1>INFO 343 Chat</h1>
 
+            <p class="lead">Welcome {{user.displayName}} ({{user.username}})</p>
+
             <section>
-                <form name="newMsgForm" novalidate ng-submit="sendMessage()">
-                    <div class="form-group">
-                        <label for="nameInp">Your Name:</label>
-                        <input type="text" id="nameInp" name="nameInp" class="form-control" ng-model="name"
-                               autofocus placeholder="what's your name?" required/>
-                    </div>
-                    <div class="form-group">
-                        <label for="msgInp">Your Message:</label>
-                        <textarea id="msgInp" name="msgInp" class="form-control" ng-model="body"
-                                  placeholder="what do you want to say?" required maxlength="140"></textarea>
-                    </div>
-                    <div class="form-group">
+                <form name="newMsgForm" novalidate ng-submit="sendMessage()" class="new-message-form">
+                    <img ng-src="{{user.profileImageURL}}" alt="user profile image"/>
+                    <p>
+                        <input id="msgInp" name="msgInp" class="form-control" ng-model="body"
+                          placeholder="what do you want to say?" required maxlength="140"/>
+                    </p>
+                    <p>
                         <button type="submit" class="btn btn-primary" ng-disabled="newMsgForm.$invalid">Send Message</button>
-                    </div>
+                    </p>
                 </form>
             </section>
 
             <section>
                 <ul class="messages">
-                    <li ng-repeat="msg in messages | orderBy : 'createdAt' : true">
-                        <strong>{{msg.name}}:</strong>
-                        {{msg.body}}
+                    <li ng-repeat="msg in messages | orderBy : 'createdAt' : true" class="clearfix">
+                        <img ng-src="{{users[user.username].profileImageURL}}" alt="profile image"/>
+                        <p>
+                            <strong>{{msg.username}}:</strong> {{msg.body}}
+                        </p>
                     </li>
                 </ul>
             </section>
