@@ -20,6 +20,7 @@ footer {
     font-size: 0.8em;
 }
 
+<<<<<<< HEAD
 tfoot {
     font-size: 0.8em;
 }
@@ -34,6 +35,9 @@ form .ng-dirty.ng-invalid {
 
 .validation-error {
     color: #DD0000;
+=======
+tfoot td {
+>>>>>>> master
     font-size: 0.8em;
 }
 
