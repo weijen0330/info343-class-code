@@ -38,31 +38,39 @@
         <main class="container" ng-app="ChatApp" ng-controller="ChatController">
             <h1>INFO 343 Chat</h1>
 
-            <p class="lead">Welcome {{user.displayName}} ({{user.username}})</p>
+            <div ng-if="!user">
+                <button class="btn btn-primary" ng-click="signin()">Sign In with GitHub</button>
+            </div>
+            <div ng-show="user">
+                <p class="lead">
+                    <button class="btn btn-default pull-right" ng-click="signout()">sign out</button>
+                    Welcome {{user.displayName}} ({{user.username}})
+                </p>
 
-            <section>
-                <form name="newMsgForm" novalidate ng-submit="sendMessage()" class="new-message-form">
-                    <img ng-src="{{user.profileImageURL}}" alt="user profile image"/>
-                    <p>
-                        <input id="msgInp" name="msgInp" class="form-control" ng-model="body"
-                          placeholder="what do you want to say?" required maxlength="140"/>
-                    </p>
-                    <p>
-                        <button type="submit" class="btn btn-primary" ng-disabled="newMsgForm.$invalid">Send Message</button>
-                    </p>
-                </form>
-            </section>
-
-            <section>
-                <ul class="messages">
-                    <li ng-repeat="msg in messages | orderBy : 'createdAt' : true" class="clearfix">
-                        <img ng-src="{{users[user.username].profileImageURL}}" alt="profile image"/>
+                <section>
+                    <form name="newMsgForm" novalidate ng-submit="sendMessage()" class="new-message-form">
+                        <img ng-src="{{user.profileImageURL}}" alt="user profile image"/>
                         <p>
-                            <strong>{{msg.username}}:</strong> {{msg.body}}
+                            <input id="msgInp" name="msgInp" class="form-control" ng-model="body"
+                                   placeholder="what do you want to say?" required maxlength="140"/>
                         </p>
-                    </li>
-                </ul>
-            </section>
+                        <p>
+                            <button type="submit" class="btn btn-primary" ng-disabled="newMsgForm.$invalid">Send Message</button>
+                        </p>
+                    </form>
+                </section>
+
+                <section>
+                    <ul class="messages">
+                        <li ng-repeat="msg in messages | orderBy : 'createdAt' : true" class="clearfix">
+                            <img ng-src="{{users[user.username].profileImageURL}}" alt="profile image"/>
+                            <p>
+                                <strong>{{msg.username}}:</strong> {{msg.body}}
+                            </p>
+                        </li>
+                    </ul>
+                </section>
+            </div>
         </main>
 
 

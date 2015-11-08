@@ -5,12 +5,25 @@ angular.module('ChatApp', ['firebase'])
         //create reference to the Firebase
         var rootRef = new Firebase(firebaseUrl);
         var auth = $firebaseAuth(rootRef);
-        $scope.users = $firebaseObject(rootRef.child('users'));
+
+        $scope.signin = function() {
+            auth.$authWithOAuthPopup('github')
+                .catch(function(err) {
+                    console.error(err);
+                });
+        };
+
+        $scope.signout = function() {
+            auth.$unauth();
+        };
 
         auth.$onAuth(function(authData) {
             if (authData) {
-                $scope.users[authData.github.username] = authData.github;
-                $scope.users.$save();
+                $scope.users = $firebaseObject(rootRef.child('users'));
+                $scope.users.$loaded().then(function() {
+                    $scope.users[authData.github.username] = authData.github;
+                    $scope.users.$save();
+                });
 
                 $scope.user = authData.github;
 
@@ -19,10 +32,9 @@ angular.module('ChatApp', ['firebase'])
                 $scope.messages = $firebaseArray(messagesRef);
             }
             else {
-                auth.$authWithOAuthRedirect('github')
-                    .catch(function(err) {
-                        console.error(err);
-                    });
+                $scope.users = null;
+                $scope.user = null;
+                $scope.messages = null;
             }
         });
 
@@ -33,9 +45,10 @@ angular.module('ChatApp', ['firebase'])
                 username: $scope.user.username,
                 body: $scope.body,
                 createdAt: Firebase.ServerValue.TIMESTAMP
+            }).then(function() {
+                $scope.body = null;
             });
 
-            $scope.body = null;
         }; //sendMessage()
 
     });
