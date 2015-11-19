@@ -38,6 +38,8 @@
         <main class="container" ng-app="ChatApp" ng-controller="ChatController">
             <h1>INFO 343 Chat</h1>
 
+            <p class="alert alert-danger" ng-if="error">{{error.code}}</p>
+
             <div ng-if="!user">
                 <button class="btn btn-primary" ng-click="signin()">Sign In with GitHub</button>
             </div>

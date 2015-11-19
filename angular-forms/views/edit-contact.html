@@ -1,5 +1,6 @@
 <h1>Edit {{contact.fname}} {{contact.lname}}</h1>
 
+<<<<<<< HEAD
 <!-- tell browser to not validate, let angular do it
  Don't use type of date because the users then HAS to enter in that way
  but type of tel is good for mobile users. A number pad will pop up-->
@@ -11,19 +12,52 @@
                 name="fnameImp" ng-model="contact.fname" required/>
         <!-- if satement is true, p will display -->
         <p class="validation-error" ng-if="contactForm.fnameImp.$error.required">First name is required</p>
+=======
+<form class="edit-contact" name="contactForm" novalidate ng-submit="saveContact()">
+    <div class="form-group">
+        <label for="fnameInp">First Name:</label>
+        <input type="text" class="form-control" id="fnameInp" name="fnameImp" ng-model="contact.fname"
+                placeholder="enter a first name" required autofocus/>
+    </div>
+
+    <div class="form-group">
+        <label for="lnameInp">Last Name:</label>
+        <input type="text" class="form-control" id="lnameInp" name="lnameInp" ng-model="contact.lname"
+                placeholder="enter a last name" required/>
+        <p class="validation-error" ng-if="contactForm.lnameInp.$error.required">
+            a last name is required
+        </p>
+    </div>
+
+    <div class="form-group">
+        <label for="phoneInp">Phone:</label>
+        <input type="tel" class="form-control" id="phoneInp" name="phoneInp" ng-model="contact.phone"
+                placeholder="phone number" required pattern="\d{3}-\d{3}-\d{4}"/>
+        <p class="validation-error" ng-if="contactForm.phoneInp.$error.required">
+            A phone number is required
+        </p>
+        <p class="validation-error" ng-if="contactForm.phoneInp.$error.pattern">
+            Phone numbers must be in the pattern xxx-xxx-xxxx
+        </p>
+>>>>>>> bf5a052537088749089294551ddbc0b3a96a946d
     </div>
 
     <div class="form-group">
         <label for="dobInp">Date of Birth:</label>
         <input type="text" class="form-control" id="dobInp" name="dobInp" ng-model="contact.dob"
                placeholder="date of birth" in-the-past />
+<<<<<<< HEAD
         <p class="validate-error" ng-if="contactForm.dobInp.$error.inThePast">
+=======
+        <p class="validation-error" ng-if="contactForm.dobInp.$error.inThePast">
+>>>>>>> bf5a052537088749089294551ddbc0b3a96a946d
             Date of birth must be in the past
         </p>
     </div>
 
     <div class="form-group">
         <label for="shoeInp">Shoe Size:</label>
+<<<<<<< HEAD
         <input type="number" class="form-control" id="shoeInp" name="shoeInp" ng-model="contact.shoeSize" required min="4"
                max="17" step="0.5" />
         <p class="validation-error" ng-if="contactForm.shoeInp.$error.min">
@@ -45,3 +79,24 @@
         <button type="submit" class="btn btn-primary"ng-disabled="contactForm.$invalid">Save</button>
     </div>
 </form>
+=======
+        <input type="number" class="form-control" id="shoeInp" name="shoeInp" ng-model="contact.shoeSize"
+                required min="4" max="17" step="0.5"/>
+        <p class="validation-error" ng-if="contactForm.shoeInp.$error.min">
+            Shoe size must be at least 4
+        </p>
+        <p class="validation-error" ng-if="contactForm.shoeInp.$error.max">
+            Shoe size must be less than 18
+        </p>
+        <p class="validation-error" ng-if="contactForm.shoeInp.$error.required">
+            Shoe size is required
+        </p>
+    </div>
+
+    <div class="form-group">
+        <a type="button" class="btn btn-default" ui-sref="list">Cancel</a>
+        <button type="submit" class="btn btn-primary" ng-disabled="contactForm.$invalid">Save</button>
+    </div>
+</form>
+
+>>>>>>> bf5a052537088749089294551ddbc0b3a96a946d

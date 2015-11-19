@@ -1,31 +1,6 @@
 
 angular.module('ChatApp', ['firebase'])
-<<<<<<< HEAD
-    .constant('firebaseUrl', 'https://info343chat.firebaseio.com/messages')
-    .controller('ChatController', function($scope, $firebaseArray, firebaseUrl) {
-        // creating reference to the Firebase
-        var ref = new FireBase(firebaseUrl);
-        //only last 1000 messages
-        ref.limitToLast(1000);
-        // synchornized array that talks to Firebase
-        $scope.messages = $firebaseArray(ref);
-
-        $scope.name = null;
-        $scope.body = null;
-
-        $scope.sendMessage = function() {
-            // $add --> add to array,  push to firebase and sunchronizes with the server
-            $scope.messages.$add({
-                name: $scope.name,
-                body: $scope.body,
-                createdAt: Firebase.ServerValue.TIMESTAMP
-            });
-
-            $scope.body = null;
-        };
-    });
-=======
-    .constant('firebaseUrl', 'https://info343chat.firebaseio.com')
+    .constant('firebaseUrl', 'https://info343chatauth.firebaseio.com/')
     .controller('ChatController', function($scope, $firebaseArray, $firebaseObject, $firebaseAuth, firebaseUrl) {
         //create reference to the Firebase
         var rootRef = new Firebase(firebaseUrl);
@@ -89,11 +64,17 @@ angular.module('ChatApp', ['firebase'])
                 username: $scope.user.username,
                 body: $scope.body,
                 createdAt: Firebase.ServerValue.TIMESTAMP
-            }).then(function() {
-                //after the add is done, clear the body field
-                $scope.body = null;
-            });
+            })
+                .then(function() {
+                    //after the add is done, clear the body field
+                    $scope.body = null;
+                    //and any error
+                    $scope.error = null;
+                })
+                .catch(function(err) {
+                    console.error(err);
+                    $scope.error = err;
+                });
         }; //sendMessage()
 
     }); //ChatController
->>>>>>> bf5a052537088749089294551ddbc0b3a96a946d
