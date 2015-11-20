@@ -3,6 +3,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
 
+<<<<<<< HEAD
     var canvas = document.getElementById('game-canvas');
     //2D rendering context
     var ctx = canvas.getContext('2d');
@@ -127,4 +128,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //ask browser to animate as quickly as possible
     requestAnimationFrame(animate);
+=======
+>>>>>>> c84f5159f0e16814099c42488b45f5b0c2a8d351
 });
