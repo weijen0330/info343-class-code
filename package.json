@@ -1,0 +1,19 @@
+{
+  "name": "info343-class-code",
+  "version": "1.0.0",
+  "description": "Students should fork this repo into their own accounts so that they can code along with me and commit/push their code to their own GitHub accounts.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weijen0330/info343-class-code.git"
+  },
+  "author": "Wei-Jen Chiang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/weijen0330/info343-class-code/issues"
+  },
+  "homepage": "https://github.com/weijen0330/info343-class-code#readme"
+}
